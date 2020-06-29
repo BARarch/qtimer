@@ -1,6 +1,7 @@
 import time
 import inspect
 import fieldspace as fsp
+import timeformater as tf
 from argformater import formatArgs
 
 
@@ -15,13 +16,13 @@ def timeit(method):
         result = method(*args, **kw)
         te = time.time()
         tc = te - ts
-        tcMiliseconds = "{:.2f} ms".format((tc) * 1000)
+        formatedTime = tf.format_time(tc)
         if 'log_time' in kw:
             name = kw.get('log_name', method.__name__.upper())
             kw['log_time'][name] = int((te - ts) * 1000)
         else:
             print("timed: ")
-            print(fsp.center_equals_field(tcMiliseconds, 92))
+            print(fsp.center_equals_field(formatedTime, 92))
             # print("{:.2f} ms".format((te - ts) * 1000))
         return result
 
@@ -44,4 +45,4 @@ if __name__ == '__main__':
         return fibs(n)
 
     print('Result: ' +
-          str(test_time_function(30, [2, 4, 6, 8, 10, 12, 40], None)))
+          str(test_time_function(31, [2, 4, 6, 8, 10, 12, 40], None)))
