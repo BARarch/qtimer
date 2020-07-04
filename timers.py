@@ -1,28 +1,33 @@
-import time
-import inspect
-import fieldspace as fsp
-import timeformater as tf
-from argformater import formatArgs
+#import time
+#import inspect
+#import fieldspace as fsp
+#import timeformater as tf
+from . import formats
 
 
 def timeit(method):
+    import time
+    import inspect
+
+    #from argformater import formatArgs
+
     def timed(*args, **kw):
         ts = time.time()
         args_name = inspect.getfullargspec(method)[0]
-        functionString = method.__name__ + "(" + formatArgs(args_name,
-                                                            args) + ")"
-        print("timing- " + fsp.dash_field(functionString, 84), end="\n")
+        functionString = method.__name__ + "(" + formats.formatArgs(
+            args_name, args) + ")"
+        print("timing- " + formats.dash_field(functionString, 84), end="\n")
 
         result = method(*args, **kw)
         te = time.time()
         tc = te - ts
-        formatedTime = tf.format_time(tc)
+        formatedTime = formats.format_time(tc)
         if 'log_time' in kw:
             name = kw.get('log_name', method.__name__.upper())
             kw['log_time'][name] = int((te - ts) * 1000)
         else:
             print("timed: ")
-            print(fsp.center_equals_field(formatedTime, 92))
+            print(formats.center_equals_field(formatedTime, 92))
             # print("{:.2f} ms".format((te - ts) * 1000))
         return result
 
@@ -30,6 +35,7 @@ def timeit(method):
 
 
 if __name__ == '__main__':
+    #import formats
 
     @timeit
     def test_time_function(n, m, p):
@@ -38,6 +44,7 @@ if __name__ == '__main__':
             if m == 0:
                 return m
             elif m == 1:
+
                 return m
             else:
                 return fibs(m - 1) + fibs(m - 2)

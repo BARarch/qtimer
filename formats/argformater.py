@@ -48,21 +48,21 @@ def formatArgs(arg_name, args):
     ])
 
 
-if __name__ == "__main__":
-    print(value_parse(45))
-    print(value_parse("Hello"))
-    print(value_parse("This is my long name"))
-    print(value_parse([2, 3, 4, 'stop']))
-    print(value_parse([2, 3, 4, 'stop this string its too long']))
-    print(value_parse([1, 2, 3, True, 5, 6]))
-    print(value_parse([1, None, [True, 'b', 'c']]))
-    print(
-        value_parse([
-            1, 2, ['a', 'b', 'c'],
-            [(2, 8), [(5, 2, 3), 12, 'this is another big string']]
-        ]))
-
-    f = {'foo': 80, (2, 4, 5): 'Nothing', 'a longer string key': 2, 'a': 12}
-    print(value_parse(f))
-
-    print(value_parse([1, 2, ['a', 'b', 'c', [2, f]]]))
+#if __name__ == "__main__":
+#    print(value_parse(45))
+#    print(value_parse("Hello"))
+#    print(value_parse("This is my long name"))
+#    print(value_parse([2, 3, 4, 'stop']))
+#    print(value_parse([2, 3, 4, 'stop this string its too long']))
+#    print(value_parse([1, 2, 3, True, 5, 6]))
+#    print(value_parse([1, None, [True, 'b', 'c']]))
+#    print(
+#        value_parse([
+#            1, 2, ['a', 'b', 'c'],
+#            [(2, 8), [(5, 2, 3), 12, 'this is another big string']]
+#        ]))
+#
+#    f = {'foo': 80, (2, 4, 5): 'Nothing', 'a longer string key': 2, 'a': 12}
+#    print(value_parse(f))
+#
+#    print(value_parse([1, 2, ['a', 'b', 'c', [2, f]]]))
