@@ -1,2 +1,2 @@
-#from .timers import timeit
+from .timers import timeit
 #from .argformater import formatArgs
