@@ -12,11 +12,12 @@ def timeit(method):
     #from argformater import formatArgs
 
     def timed(*args, **kw):
+        print()
         ts = time.time()
         args_name = inspect.getfullargspec(method)[0]
         functionString = method.__name__ + "(" + formats.formatArgs(
             args_name, args) + ")"
-        print("timing- " + formats.dash_field(functionString, 84), end="\n")
+        print(formats.dash_field(functionString, 84), end="\n")
 
         result = method(*args, **kw)
         te = time.time()
@@ -26,9 +27,8 @@ def timeit(method):
             name = kw.get('log_name', method.__name__.upper())
             kw['log_time'][name] = int((te - ts) * 1000)
         else:
-            print("timed: ")
-            print(formats.center_equals_field(formatedTime, 92))
-            # print("{:.2f} ms".format((te - ts) * 1000))
+            print(f"timed: {formatedTime}")
+            
         return result
 
     return timed
