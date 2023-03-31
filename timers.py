@@ -4,6 +4,61 @@
 #import timeformater as tf
 from . import formats
 
+''' Qtimer special notes:
+    LeetCode tester will have two modes speed and debug.  The timer shall be configured to handle both of these modes
+    I wonder if I can make a class for the timers
+
+    like this:
+    @timer.timeit       ## SPEED: Test all cases for a solution.  Compare speeds across solutions when finnished
+        def test (test_solns, cases):
+            for test_soln in test_solns:
+                for case in cases:
+                    test_soln(cases)
+
+    -or
+    @timer.timeit      ## DEBUG: Test all solutitions for a case.  Compare results for each case.
+        def test (test_solns, cases):
+            for case in cases:
+                for test_soln in test_solns:    
+                    test_soln(cases)
+
+    Timing this will require placeing the @timeit in new locations and composing helpers.
+    
+    What do I want to time in each scenario?
+    For speed it would be each solution finishing all cases
+    ...so
+
+    def test (test_solns, cases):
+
+        def compose_test(test_soln):
+            @qtimer.timeit_speed
+            def speedTest (cases):
+                for case in cases:
+                    test_soln(case)
+        
+        
+
+        
+
+
+        for test_soln in test_solns:
+            compose_test(test_soln)
+
+
+    For debug it would be the time for each case.  
+    Output would be minimal...
+    def test (test_solns, cases):
+            for test_soln in test_solns:
+                for case in cases:
+                    @qtimer.timeit_debug
+                    test_soln(cases)
+
+
+
+    I can make compose the tester and move @timeit
+
+    '''
+
 
 def timeit(method):
     import time
@@ -35,7 +90,7 @@ def timeit(method):
 
 
 if __name__ == '__main__':
-    #import formats
+    import formats
 
     @timeit
     def test_time_function(n, m, p):
